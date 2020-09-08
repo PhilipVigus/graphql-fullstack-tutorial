@@ -1,5 +1,5 @@
-const { DataSource } = require('apollo-datasource');
-const isEmail = require('isemail');
+const { DataSource } = require("apollo-datasource");
+const isEmail = require("isemail");
 
 class UserAPI extends DataSource {
   constructor({ store }) {
@@ -13,6 +13,8 @@ class UserAPI extends DataSource {
    * like caches and context. We'll assign this.context to the request context
    * here, so we can know about the user making requests
    */
+
+  // context is shared between all resolvers in a request
   initialize(config) {
     this.context = config.context;
   }
@@ -66,7 +68,7 @@ class UserAPI extends DataSource {
       where: { userId },
     });
     return found && found.length
-      ? found.map(l => l.dataValues.launchId).filter(l => !!l)
+      ? found.map((l) => l.dataValues.launchId).filter((l) => !!l)
       : [];
   }
 
